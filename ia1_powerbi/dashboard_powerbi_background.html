@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <title>Dashboard IA1 Power BI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: #f3f6fb;
+      color: #07162c;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .header {
+      height: 108px;
+      padding: 18px 40px;
+      background: #102033;
+      color: #fff;
+    }
+    .header h1 { margin: 0; font-size: 46px; line-height: 1.08; letter-spacing: 0; }
+    .header p { margin: 10px 0 0; font-size: 17px; color: #d9e2ef; }
+    .wrap { padding: 16px 32px 18px; }
+    .filters { display: flex; align-items: center; gap: 12px; margin-left: 210px; margin-bottom: 12px; font-size: 17px; }
+    .select, .btn { height: 38px; border: 1px solid #d6deeb; background: #fff; border-radius: 6px; padding: 8px 16px; }
+    .btn.active { background: #1779a6; color: #fff; border-color: #1779a6; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; width: 1440px; margin: 0 auto 14px; }
+    .panel, .kpi {
+      background: #fff;
+      border: 1px solid #d8e0ed;
+      border-radius: 8px;
+      box-shadow: 0 16px 36px rgba(20, 36, 61, 0.08);
+    }
+    .kpi { height: 92px; padding: 18px 22px; }
+    .kpi span { color: #52627a; font-size: 14px; }
+    .kpi strong { display: block; margin-top: 8px; font-size: 30px; line-height: 1.05; }
+    .kpi strong.period { font-size: 25px; white-space: nowrap; }
+    .top { display: grid; grid-template-columns: 1040px 520px; gap: 16px; width: 1440px; margin: 0 auto 14px; }
+    .bottom { display: grid; grid-template-columns: 470px 470px 470px; gap: 16px; width: 1440px; margin: 0 auto 14px; }
+    .panel { padding: 16px 24px; }
+    .top .panel { height: 315px; }
+    .bottom .panel { height: 205px; }
+    h2 { margin: 0 0 10px; font-size: 22px; }
+    .insight { border-left: 5px solid #dc6b36; background: #fff7f1; padding: 9px 13px; margin-bottom: 9px; border-radius: 5px; font-size: 16px; line-height: 1.25; }
+    .chart { width: 100%; height: auto; display: block; }
+    .top .chart { height: 258px; }
+    .bottom .chart { height: 135px; }
+    .axis, .legend, .value, .bar-label { font-family: "Segoe UI", Arial, sans-serif; fill: #42526b; font-size: 14px; }
+    .legend { font-size: 15px; }
+    .value { font-size: 14px; }
+    .bar-label { font-size: 15px; fill: #07162c; }
+    .caption { color: #52627a; font-size: 14px; margin: 2px 0 0; }
+    .table-panel { width: 1440px; height: 165px; margin: 0 auto; padding: 13px 24px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; border-bottom: 1px solid #d8e0ed; padding: 5px 10px; }
+    th { color: #52627a; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1>Dashboard IA1 - Qualite de l'air</h1>
+    <p>Analyse individuelle des donnees AQI collectees par le pipeline DONNEES2 de SquadAnalytics.</p>
+  </section>
+  <main class="wrap">
+    <div class="filters">
+      <span>Ville</span><div class="select">Dakar</div>
+      <div class="btn active">AQI</div><div class="btn">PM10</div><div class="btn">PM2.5</div><div class="btn">NO2</div>
+    </div>
+    <section class="kpis">
+      <div class="kpi"><span>Lignes analysees</span><strong>11,005</strong></div>
+      <div class="kpi"><span>Villes suivies</span><strong>5</strong></div>
+      <div class="kpi"><span>Periode couverte</span><strong class="period">2026-05-01 -> 2026-07-31</strong></div>
+      <div class="kpi"><span>Doublons ville+heure</span><strong>0</strong></div>
+    </section>
+    <section class="top">
+      <div class="panel"><h2>Evolution quotidienne - AQI</h2>
+<svg viewBox="0 0 1040 360" class="chart">
+  <line x1="70" x2="980" y1="34.0" y2="34.0" stroke="#e4e9f2"/><text x="16" y="38.0" class="axis">182</text><line x1="70" x2="980" y1="97.8" y2="97.8" stroke="#e4e9f2"/><text x="16" y="101.8" class="axis">137</text><line x1="70" x2="980" y1="161.5" y2="161.5" stroke="#e4e9f2"/><text x="16" y="165.5" class="axis">91</text><line x1="70" x2="980" y1="225.2" y2="225.2" stroke="#e4e9f2"/><text x="16" y="229.2" class="axis">46</text><line x1="70" x2="980" y1="289.0" y2="289.0" stroke="#e4e9f2"/><text x="16" y="293.0" class="axis">0</text>
+  <line x1="70" x2="980" y1="289" y2="289" stroke="#b8c2d4"/>
+  <line x1="70" x2="70" y1="34" y2="289" stroke="#b8c2d4"/>
+  <polyline points="70.0,261.2 80.0,262.0 90.0,262.0 100.0,257.0 110.0,260.8 120.0,258.5 130.0,258.2 140.0,259.7 150.0,256.1 160.0,260.4 170.0,264.1 180.0,261.9 190.0,260.6 200.0,259.6 210.0,257.0 220.0,261.2 230.0,263.6 240.0,263.7 250.0,262.3 260.0,261.7 270.0,261.6 280.0,259.8 290.0,261.9 300.0,266.1 310.0,261.2 320.0,257.5 330.0,259.6 340.0,260.6 350.0,262.8 360.0,262.7 370.0,262.5 380.0,260.5 390.0,258.7 400.0,239.5 410.0,237.7 420.0,253.4 430.0,259.2 440.0,261.8 450.0,259.8 460.0,255.8 470.0,252.1 480.0,223.7 490.0,251.1 500.0,245.0 510.0,258.5 520.0,263.4 530.0,259.9 540.0,260.9 550.0,262.1 560.0,257.3 570.0,252.2 580.0,256.2 590.0,257.7 600.0,258.9 610.0,260.7 620.0,259.8 630.0,260.4 640.0,257.9 650.0,257.1 660.0,258.6 670.0,259.5 680.0,259.0 690.0,259.6 700.0,249.3 710.0,244.1 720.0,260.5 730.0,258.3 740.0,255.6 750.0,258.7 760.0,259.6 770.0,260.4 780.0,264.4 790.0,259.4 800.0,255.1 810.0,257.4 820.0,256.0 830.0,214.2 840.0,238.4 850.0,252.2 860.0,235.3 870.0,204.4 880.0,202.1 890.0,239.5 900.0,252.8 910.0,250.6 920.0,235.5 930.0,238.4 940.0,253.1 950.0,251.0 960.0,250.5 970.0,252.3 980.0,241.6" fill="none" stroke="#1779a6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="70.0,233.2 80.0,184.0 90.0,177.7 100.0,158.2 110.0,160.4 120.0,178.0 130.0,217.3 140.0,245.8 150.0,241.2 160.0,197.4 170.0,204.5 180.0,192.9 190.0,149.6 200.0,159.7 210.0,162.8 220.0,58.4 230.0,52.9 240.0,91.2 250.0,80.9 260.0,108.2 270.0,135.1 280.0,168.2 290.0,168.8 300.0,178.8 310.0,190.1 320.0,174.4 330.0,152.1 340.0,142.4 350.0,148.2 360.0,136.3 370.0,119.6 380.0,130.5 390.0,144.8 400.0,159.1 410.0,141.7 420.0,135.5 430.0,124.9 440.0,96.1 450.0,112.6 460.0,146.6 470.0,175.1 480.0,183.1 490.0,158.8 500.0,186.6 510.0,188.1 520.0,173.2 530.0,160.8 540.0,174.2 550.0,153.3 560.0,129.1 570.0,165.7 580.0,190.6 590.0,152.2 600.0,166.9 610.0,238.5 620.0,226.5 630.0,195.9 640.0,167.9 650.0,178.2 660.0,186.6 670.0,208.3 680.0,185.7 690.0,171.5 700.0,174.8 710.0,168.3 720.0,209.2 730.0,194.7 740.0,171.6 750.0,160.6 760.0,169.9 770.0,158.5 780.0,153.2 790.0,167.1 800.0,169.2 810.0,168.7 820.0,175.6 830.0,234.5 840.0,258.7 850.0,261.6 860.0,259.1 870.0,212.9 880.0,214.3 890.0,235.9 900.0,179.4 910.0,171.6 920.0,193.7 930.0,190.9 940.0,213.1 950.0,214.0 960.0,240.6 970.0,227.5 980.0,203.6" fill="none" stroke="#dc6b36" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="70.0,246.0 80.0,249.4 90.0,247.1 100.0,235.9 110.0,221.6 120.0,236.0 130.0,246.2 140.0,245.2 150.0,234.8 160.0,214.4 170.0,234.9 180.0,249.8 190.0,240.2 200.0,243.8 210.0,255.2 220.0,235.9 230.0,228.9 240.0,222.7 250.0,217.1 260.0,234.6 270.0,258.9 280.0,210.4 290.0,251.4 300.0,251.2 310.0,251.0 320.0,221.0 330.0,230.7 340.0,243.7 350.0,249.1 360.0,246.6 370.0,248.3 380.0,241.7 390.0,241.2 400.0,236.2 410.0,232.2 420.0,219.1 430.0,220.0 440.0,240.9 450.0,243.2 460.0,241.9 470.0,236.3 480.0,226.3 490.0,233.7 500.0,233.7 510.0,231.1 520.0,246.1 530.0,242.0 540.0,237.8 550.0,230.4 560.0,238.8 570.0,246.6 580.0,240.8 590.0,220.2 600.0,245.2 610.0,249.7 620.0,235.9 630.0,234.9 640.0,220.7 650.0,182.9 660.0,194.3 670.0,210.8 680.0,223.8 690.0,211.6 700.0,223.1 710.0,228.4 720.0,225.5 730.0,238.2 740.0,252.2 750.0,239.9 760.0,236.8 770.0,231.9 780.0,231.8 790.0,226.9 800.0,227.5 810.0,218.0 820.0,201.4 830.0,196.2 840.0,169.2 850.0,180.5 860.0,202.9 870.0,230.0 880.0,236.6 890.0,237.6 900.0,235.0 910.0,231.1 920.0,233.2 930.0,223.4 940.0,214.6 950.0,205.9 960.0,241.5 970.0,249.9 980.0,231.8" fill="none" stroke="#2d936c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="70.0,248.0 80.0,249.2 90.0,252.4 100.0,259.4 110.0,260.4 120.0,249.7 130.0,250.1 140.0,243.9 150.0,247.1 160.0,254.2 170.0,247.2 180.0,247.2 190.0,249.0 200.0,252.5 210.0,253.0 220.0,253.5 230.0,259.1 240.0,258.6 250.0,259.2 260.0,252.0 270.0,254.1 280.0,247.8 290.0,242.8 300.0,243.6 310.0,236.3 320.0,226.5 330.0,229.5 340.0,230.6 350.0,235.1 360.0,236.3 370.0,252.1 380.0,253.4 390.0,258.4 400.0,257.3 410.0,256.4 420.0,252.5 430.0,252.8 440.0,251.7 450.0,258.5 460.0,252.2 470.0,255.5 480.0,255.8 490.0,264.4 500.0,260.4 510.0,251.6 520.0,253.1 530.0,255.4 540.0,252.1 550.0,245.4 560.0,244.7 570.0,244.7 580.0,236.5 590.0,232.0 600.0,225.9 610.0,228.9 620.0,230.8 630.0,226.8 640.0,232.1 650.0,247.2 660.0,250.7 670.0,243.0 680.0,253.6 690.0,261.2 700.0,250.4 710.0,253.1 720.0,260.4 730.0,259.4 740.0,256.9 750.0,244.5 760.0,248.0 770.0,237.2 780.0,236.4 790.0,238.2 800.0,241.6 810.0,231.3 820.0,230.2 830.0,232.6 840.0,240.7 850.0,240.6 860.0,248.8 870.0,250.9 880.0,248.0 890.0,250.1 900.0,252.4 910.0,253.8 920.0,244.9 930.0,256.9 940.0,249.2 950.0,243.7 960.0,241.3 970.0,241.3 980.0,257.4" fill="none" stroke="#8b5aa6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><polyline points="70.0,217.2 80.0,228.3 90.0,209.7 100.0,227.4 110.0,234.9 120.0,241.5 130.0,212.4 140.0,226.2 150.0,232.8 160.0,211.0 170.0,232.8 180.0,240.3 190.0,223.9 200.0,196.4 210.0,216.2 220.0,203.6 230.0,200.7 240.0,200.5 250.0,220.3 260.0,234.0 270.0,239.6 280.0,246.0 290.0,248.6 300.0,222.9 310.0,202.2 320.0,231.3 330.0,240.2 340.0,243.8 350.0,239.4 360.0,239.1 370.0,222.3 380.0,195.0 390.0,227.2 400.0,236.8 410.0,246.4 420.0,245.9 430.0,256.6 440.0,238.2 450.0,239.4 460.0,237.3 470.0,213.6 480.0,203.7 490.0,202.0 500.0,185.5 510.0,189.6 520.0,229.0 530.0,226.7 540.0,219.9 550.0,245.6 560.0,210.1 570.0,220.3 580.0,249.8 590.0,237.5 600.0,246.8 610.0,244.7 620.0,226.3 630.0,215.1 640.0,249.7 650.0,201.4 660.0,221.1 670.0,200.3 680.0,188.6 690.0,213.6 700.0,245.2 710.0,225.6 720.0,238.0 730.0,228.6 740.0,201.8 750.0,203.2 760.0,215.3 770.0,231.4 780.0,233.6 790.0,243.7 800.0,204.9 810.0,195.5 820.0,202.3 830.0,201.7 840.0,195.9 850.0,235.2 860.0,256.7 870.0,242.4 880.0,217.8 890.0,192.5 900.0,187.8 910.0,209.9 920.0,211.4 930.0,211.5 940.0,202.2 950.0,228.4 960.0,216.2 970.0,197.8 980.0,195.8" fill="none" stroke="#d4a318" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="70" y="314" class="axis">2026-05-01</text>
+  <text x="888" y="314" class="axis">2026-07-31</text>
+  <circle cx="70" cy="332" r="6" fill="#1779a6"/><text x="82" y="337" class="legend">Antananarivo</text><circle cx="210" cy="332" r="6" fill="#dc6b36"/><text x="222" y="337" class="legend">Dakar</text><circle cx="350" cy="332" r="6" fill="#2d936c"/><text x="362" y="337" class="legend">New York</text><circle cx="490" cy="332" r="6" fill="#8b5aa6"/><text x="502" y="337" class="legend">Paris</text><circle cx="630" cy="332" r="6" fill="#d4a318"/><text x="642" y="337" class="legend">Tokyo</text>
+</svg>
+</div>
+      <div class="panel">
+        <h2>Insights a presenter</h2>
+        <div class="insight">Dakar affiche l'AQI moyen le plus eleve (82,03).</div>
+        <div class="insight">Antananarivo est la ville la plus favorable sur la periode (24,59 en moyenne).</div>
+        <div class="insight">Le pic observe atteint 181 a Dakar le 2026-05-17T09:00.</div>
+        <div class="insight">Le fichier clean respecte le contrat IA1/DONNEES2 : une ligne par ville et par heure, sans doublons.</div>
+      </div>
+    </section>
+    <section class="bottom">
+      <div class="panel"><h2>AQI moyen par ville</h2><svg viewBox="0 0 520 285" class="chart"><text x="0" y="55" class="bar-label">Dakar</text><rect x="115" y="34" width="267.9" height="29" rx="5" fill="#1779a6"/><text x="389.9" y="55" class="value">82,03</text><text x="0" y="102" class="bar-label">Tokyo</text><rect x="115" y="81" width="156.1" height="29" rx="5" fill="#1779a6"/><text x="278.1" y="102" class="value">47,81</text><text x="0" y="149" class="bar-label">New York</text><rect x="115" y="128" width="134.2" height="29" rx="5" fill="#1779a6"/><text x="256.2" y="149" class="value">41,10</text><text x="0" y="196" class="bar-label">Paris</text><rect x="115" y="175" width="97.0" height="29" rx="5" fill="#1779a6"/><text x="219.0" y="196" class="value">29,69</text><text x="0" y="243" class="bar-label">Antananarivo</text><rect x="115" y="222" width="80.3" height="29" rx="5" fill="#dc6b36"/><text x="202.3" y="243" class="value">24,59</text></svg></div>
+      <div class="panel"><h2>Profil horaire - Dakar</h2>
+<svg viewBox="0 0 520 285" class="chart">
+  <text x="16" y="50" class="axis">92</text>
+  <rect x="54" y="91.6" width="14" height="150.4" rx="4" fill="#2d936c"/><rect x="72" y="91.3" width="14" height="150.7" rx="4" fill="#2d936c"/><rect x="90" y="91.2" width="14" height="150.8" rx="4" fill="#2d936c"/><rect x="108" y="91.1" width="14" height="150.9" rx="4" fill="#2d936c"/><rect x="126" y="91.0" width="14" height="151.0" rx="4" fill="#2d936c"/><rect x="144" y="90.9" width="14" height="151.1" rx="4" fill="#2d936c"/><rect x="162" y="90.8" width="14" height="151.2" rx="4" fill="#2d936c"/><rect x="180" y="90.9" width="14" height="151.1" rx="4" fill="#2d936c"/><rect x="198" y="90.8" width="14" height="151.2" rx="4" fill="#2d936c"/><rect x="216" y="90.8" width="14" height="151.2" rx="4" fill="#2d936c"/><rect x="234" y="90.8" width="14" height="151.2" rx="4" fill="#2d936c"/><rect x="252" y="90.4" width="14" height="151.6" rx="4" fill="#2d936c"/><rect x="270" y="90.6" width="14" height="151.4" rx="4" fill="#2d936c"/><rect x="288" y="90.6" width="14" height="151.4" rx="4" fill="#2d936c"/><rect x="306" y="90.3" width="14" height="151.7" rx="4" fill="#2d936c"/><rect x="324" y="90.5" width="14" height="151.5" rx="4" fill="#2d936c"/><rect x="342" y="90.5" width="14" height="151.5" rx="4" fill="#2d936c"/><rect x="360" y="90.2" width="14" height="151.8" rx="4" fill="#2d936c"/><rect x="378" y="90.4" width="14" height="151.6" rx="4" fill="#2d936c"/><rect x="396" y="90.3" width="14" height="151.7" rx="4" fill="#2d936c"/><rect x="414" y="90.3" width="14" height="151.7" rx="4" fill="#2d936c"/><rect x="432" y="90.6" width="14" height="151.4" rx="4" fill="#2d936c"/><rect x="450" y="90.5" width="14" height="151.5" rx="4" fill="#2d936c"/><rect x="468" y="90.5" width="14" height="151.5" rx="4" fill="#2d936c"/>
+  <line x1="54" x2="486" y1="242" y2="242" stroke="#b8c2d4"/>
+  <text x="54" y="270" class="axis">0h</text>
+  <text x="458" y="270" class="axis">23h</text>
+</svg>
+<p class="caption">Moyenne par heure de la journee pour la ville la plus exposee.</p></div>
+      <div class="panel"><h2>Polluants moyens - Dakar</h2><svg viewBox="0 0 520 285" class="chart"><rect x="58" y="80.9" width="62" height="149.1" rx="7" fill="#1779a6"/><text x="52" y="70.9" class="value">112,06</text><text x="61" y="262" class="bar-label">PM10</text><rect x="170" y="180.4" width="62" height="49.6" rx="7" fill="#dc6b36"/><text x="164" y="170.4" class="value">37,27</text><text x="173" y="262" class="bar-label">PM2.5</text><rect x="282" y="64.8" width="62" height="165.2" rx="7" fill="#2d936c"/><text x="276" y="54.8" class="value">124,11</text><text x="285" y="262" class="bar-label">CO</text><rect x="394" y="228.2" width="62" height="1.8" rx="7" fill="#8b5aa6"/><text x="388" y="218.2" class="value">1,33</text><text x="397" y="262" class="bar-label">NO2</text></svg></div>
+    </section>
+    <section class="panel table-panel">
+      <h2>Comparatif des villes</h2>
+      <table>
+        <thead><tr><th>Ville</th><th>Lignes</th><th>AQI moyen</th><th>AQI max</th><th>Pic</th><th>PM2.5 moyen</th></tr></thead>
+        <tbody>
+        <tr>
+          <td>Dakar</td>
+          <td>2201</td>
+          <td>82,03</td>
+          <td>181</td>
+          <td>2026-05-17T09:00</td>
+          <td>37,27</td>
+        </tr>
+        
+
+        <tr>
+          <td>Tokyo</td>
+          <td>2201</td>
+          <td>47,81</td>
+          <td>84</td>
+          <td>2026-07-23T15:00</td>
+          <td>21,90</td>
+        </tr>
+        
+
+        <tr>
+          <td>New York</td>
+          <td>2201</td>
+          <td>41,10</td>
+          <td>90</td>
+          <td>2026-07-17T10:00</td>
+          <td>15,51</td>
+        </tr>
+        
+
+        <tr>
+          <td>Paris</td>
+          <td>2201</td>
+          <td>29,69</td>
+          <td>67</td>
+          <td>2026-05-26T15:00</td>
+          <td>7,73</td>
+        </tr>
+        
+
+        <tr>
+          <td>Antananarivo</td>
+          <td>2201</td>
+          <td>24,59</td>
+          <td>65</td>
+          <td>2026-07-21T03:00</td>
+          <td>7,91</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+name: Hourly AQI Data Pipeline
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # S'exécute automatiquement au début de chaque heure
+  workflow_dispatch:      # Permet de lancer le pipeline manuellement depuis GitHub
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le dépôt Git
+        uses: actions/checkout@v4
+
+      - name: Configurer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Exécuter le pipeline
+        run: python pipeline.py
+
+      - name: Alimenter le Data Warehouse
+        run: python load_warehouse.py
+
+      - name: Enregistrer les modifications dans Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Auto-update AQI data & Data Warehouse [skip ci]" || exit 0
+          git push

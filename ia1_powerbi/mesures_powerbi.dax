@@ -1,0 +1,47 @@
+-- Mesures DAX a creer dans Power BI
+
+AQI moyen = AVERAGE(fact_qualite_air[aqi])
+
+AQI maximum = MAX(fact_qualite_air[aqi])
+
+PM10 moyen = AVERAGE(fact_qualite_air[pm10])
+
+PM2.5 moyen = AVERAGE(fact_qualite_air[pm2_5])
+
+CO moyen = AVERAGE(fact_qualite_air[co])
+
+NO2 moyen = AVERAGE(fact_qualite_air[no2])
+
+Nombre de mesures = COUNTROWS(fact_qualite_air)
+
+Jours couverts = DISTINCTCOUNT(dim_temps[date])
+
+Villes suivies = DISTINCTCOUNT(dim_ville[ville])
+
+Pic AQI Dakar =
+CALCULATE(
+    [AQI maximum],
+    dim_ville[ville] = "Dakar"
+)
+
+Ville la plus exposee =
+VAR Classement =
+    TOPN(
+        1,
+        ADDCOLUMNS(VALUES(dim_ville[ville]), "AQI", [AQI moyen]),
+        [AQI],
+        DESC
+    )
+RETURN
+    CONCATENATEX(Classement, dim_ville[ville])
+
+Ville la plus favorable =
+VAR Classement =
+    TOPN(
+        1,
+        ADDCOLUMNS(VALUES(dim_ville[ville]), "AQI", [AQI moyen]),
+        [AQI],
+        ASC
+    )
+RETURN
+    CONCATENATEX(Classement, dim_ville[ville])
